@@ -1,0 +1,316 @@
+ 
+    .line {
+      fill: none;
+      stroke: steelblue;
+      stroke-width: 2px;
+    }
+        
+        .drop-down {
+     overflow: hidden; 
+    font: inherit; 
+        }
+        
+        
+    button {
+    background-color: dimgray;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 70px;
+    margin: 20 20 20 20; 
+}
+        
+        #claim {
+            color: yellow; 
+        }
+        .results {
+            text-align: center; 
+            background-color: skyblue; 
+            border-style: dashed; 
+            
+        }
+        
+        #container {
+            margin: 0;
+        }
+      
+        .top {
+            text-align: center; 
+            margin: 0;
+            color: white; 
+        }
+        
+        .spectrum {
+          transform: rotate(90deg);
+	      transform-origin: left top 0;
+          
+        }
+        
+        
+        #svg {
+            margin-left: 800px; 
+        }
+        
+        
+        .axisStuff {
+            stroke: white; 
+            font-size: 45px; 
+        }
+        
+        body {
+            background-color: black; 
+            color: white; 
+            font-size: 45px;
+            font-family: Courier; 
+            margin-left: 500px; 
+            margin-right: 500px; 
+        }
+        
+    .politics {
+                fill: red; 
+                background-color: red;
+        
+            }
+        .political_news {
+            background-color: lime; 
+            fill: lime; 
+        }
+        
+        .fauxtography {
+            fill: pink; 
+            background-color: pink; 
+            
+        }
+        
+        .science{
+            fill: yellowgreen; 
+            background-color: yellowgreen; 
+        }
+        
+        .astronomy_news {
+            fill: yellow; 
+            background-color: yellow; 
+        }
+        
+        .automobiles {
+            fill:  aquamarine; 
+            background-color: aquamarine; 
+        }
+        
+        .business {
+            fill: sandybrown; 
+            background-color: sandybrown; 
+        }
+        
+       .cokelore{
+            fill: blue; 
+            background-color: blue; 
+        }
+        
+        .college {
+            fill: orange; 
+            background-color: orange; 
+        }
+        
+        .computers {
+            fill: violet;
+            background-color: violet; 
+        }
+        
+        .controversy {
+            fill: indianred; 
+            background-color: indianred
+        }
+        
+        .crime {
+            fill: blanchedalmond; 
+            background-color: blanchedalmond; 
+        }
+       
+        .critter_country {
+            fill: grey;
+            background-color: grey; 
+        }
+        
+        .disney {
+            fill: cyan;
+            background-color: cyan; 
+        }
+        
+        .education_news {
+            background-color: coral;
+            fill: coral; 
+        }
+        
+        .embarrassments   {
+            background-color: hotpink;
+            fill: hotpink; 
+        }
+        
+        .entertainment  {
+            background-color: green;
+            fill: green; 
+        }
+        
+        .fake_news {
+            background-color: darkorange;
+            fill: darkorange; 
+        }
+        
+        .fauxtography {
+            background-color: darkgoldenrod;
+            fill: darkgoldenrod; 
+        }
+        
+        .food {
+            background-color: darkmagenta;
+            fill: darkmagenta; 
+        }
+        
+        .fraud_&_scams  {
+            background-color: darksalmon;
+            fill: darksalmon; 
+        }
+       
+        .glurge_gallery {
+            background-color: silver;
+            fill: silver;
+        }
+        
+        .history {
+            background-color: chocolate;
+            fill: chocolate; 
+        }
+        
+        .holidays {
+            background-color: firebrick;
+            fill: firebrick; 
+        }
+        
+        .horrors {
+            background-color: darkviolet;
+            fill: darkviolet; 
+        }
+        
+        .humor {
+            background-color: gold;
+            fill: gold;
+        }
+        
+        
+        .hurricane_katrina {
+            background-color: fuchsia;
+            fill: fuchsia; 
+        }
+        
+        .inboxer_rebellion {
+            background-color: goldenrod;
+            fill: goldenrod; 
+        }
+       
+        
+        .language {
+            background-color: purple; 
+            fill: purple; 
+        }
+        
+        .legal_affairs {
+            background-color: chartreuse;
+            fill: chartreuse; 
+        }
+        
+        .love {
+            background-color: deeppink;
+            fill: deeppink; 
+        }
+        
+        .luck {
+            background-color: darkseagreen;
+            fill: darkseagreen; 
+        }
+        
+        .media_matters {
+            background-color: burlywood;
+            fill: burlywood; 
+        }
+        
+        .medical {
+            background-color: orangered;
+            fill: orangered; 
+        }
+        
+        .military {
+            background-color: palevioletred;
+            fill: palevioletred; 
+        }
+       
+        
+        .old_wives_tales {
+            background-color: lightblue; 
+            fill: lightblue; 
+        }
+        
+       
+        
+        .questionable_quotes {
+            background-color: aliceblue;
+            fill: aliceblue; 
+        }
+        
+        .racial_rumors    {
+            
+            background-color: lavenderblush; 
+            fill: lavenderblush; 
+        }
+        
+        .religion {
+            background-color: darkturquoise;
+            fill: darkturquoise; 
+        }
+        
+        .risqué_business {
+            background-color: lightcyan;
+            fill: lightcyan; 
+        }
+
+        
+        .science {
+            background-color: cadetblue; 
+            fill: cadetblue; 
+        }
+        
+        .september_11th {
+            background-color: sienna;
+            fill: sienna; 
+        }
+        
+        .sports {
+            background-color: lighcoral;
+            fill: lightcoral;
+        }
+        
+        .superstition {
+            background-color: olive;
+            fill: olive; 
+        }
+        
+        .technology {
+            background-color: sandybrown;
+            fill: sandybrown; 
+        }
+        
+        .travel {
+            background-color: skyblue;
+            fill: skyblue; 
+        }
+        
+        .viral_phenomena {
+            background-color: plum;
+            fill: plum;
+        }
+        
+       
+        
+        

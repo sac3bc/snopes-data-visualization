@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>Truthfulness in News Reporting Data Visualization</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="themes.css">
+    
+</head>
+<body>
+    <!-- load the d3.js library -->    	
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+    
+// https://leanpub.com/d3-t-and-t-v4/read#leanpub-auto-formatting-a-date--time-axis-with-specified-values
+//set the dimensions and margins     
+var margin = {top: 100, right: 200, bottom: 30, left: 500},
+    width = 3000 - margin.left - margin.right,
+    height = 1200 - margin.top - margin.bottom;
+
+//OK parse the date / time
+var parseTime = d3.timeParse("%d-%b-%y");
+
+// set the ranges
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+    
+// define the values for each axis 
+var valueline = d3.line()
+    .x(function(d) { return x(d.date); })
+
+    .y(function(d) { return y(d.claim_label); });
+//set a variable to use for data
+var global_data;
+//    "snopes_clean_excel_y.csv" "snopes2_makingy_claim.csv" 
+d3.csv("finalSnopes2.csv", function(error, data) {
+  if (error) throw error;
+  // format the data
+  data.forEach(function(d) {
+      d.date_published = parseTime(d.date_published);
+      d.claim_label = +d.claim_label;
+  });
+    
+global_data = data;
+
+// Scale the range of the data
+x.domain(d3.extent(data, function(d) { return d.date_published; }));
+y.domain([0, 1000]);
+
+// Add the valueline path.
+
+target = d3.select("#container")
+target.append("path")
+  .data([data])
+  .attr("class", "line")
+  .attr("d", valueline);
+
+
+ //Function do define truth value based on y-value    
+function truthValue(num) {
+
+    if (num==750) {
+    return "TRUE";
+    } else if (num=="600") {
+    return  "MOSTLY TRUE";
+    } else if (num=="450") {
+    return "MIXTURE"; 
+    } else if (num=="300") {
+    return  "MOSTLY FALSE";
+    } else if (num=="150") {
+    return "FALSE"; 
+    } else {
+    return "UNVERIFIED";
+    }
+
+}
+     target.style("background-color", "black"); 
+    
+  // Add the scatterplot
+  target.selectAll("dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("r", function(d) { console.log(+d["count"] + 1 * 10); return +d["count"] + 1 * 12;})
+      .attr("cx", function(d) { return x(d.date_published) + 500; })
+      .attr("cy", function(d) { console.log(y); return y(d.claim_label) - 150; })
+      .attr("fill-opacity", 0.7)
+      .attr("opacity", 0.6)
+     
+      .attr("class", function (d) { return d["topic"];})
+ 
+       .on("mouseover", function(d) {
+
+        d3.select(this).style("opacity", "0.3"); 
+        
+        d3.select("#count").text("# of Sources Reporting: " + d["count"]).style("color", "black").style("font-size", "100px").attr("transform", "translate(300,300)");
+        d3.select("#claim").text('Rumor: "' + d["claim"] +'"' ).style("color", "black").style("font-size", "100px").attr("x", "500").attr("y", "4000");
+        d3.select("#focus").text("Category: " + d["focus"]).style("color", "black").style("font-size", "100px");
+        d3.select("#claim_label").text("TRUE / FALSE: " + truthValue(d["claim_label"])).style("color", "black").style("font-size", "100px");
+        d3.select("#pub").text("Date Published: " + d["release"]).style("color", "black").style("font-size", "100px"); 
+
+  })
+       .on("mouseout", function(){
+        
+        d3.select(this).style("opacity", 6);
+ 
+    })
+  ;
+    
+
+//Variable to define how much to move x axis 
+var xMover=500; 
+
+// Add the X Axis
+target.append("g")
+//Move x axis over
+  .attr("transform", "translate(" + xMover + ","  + 1000 + ")")
+  .attr("class", "axisStuff")
+  .text("Date")
+  .call(d3.axisBottom(x));
+// Add the Y Axis
+//  target.append("g")
+////      .attr("transform", "translate(" + xMover + ","  + 0 + ")")
+//      .style("background-color", "red")
+//      .text("Value")
+//      .call(d3.axisLeft(y));
+});
+
+function dimAll() {
+    var circles = d3.selectAll("circle")
+        .style("opacity",0.0);
+}
+
+function showAll() {
+    var circles = d3.selectAll("circle")
+    .style("opacity",0.6);
+    
+}
+    
+
+function filter(key) {
+    dimAll();
+    var circles = d3.selectAll("."+key)
+    .style("opacity",0.6);
+}
+
+function listTopics() {
+d3.select("#topic").selectAll(".nonenoen")
+.data(d3.map(global_data, function(d) {return d["topic"];}).keys())
+.enter().append("option")
+.text(function(d) { console.log(d); return d;})
+.style("font-size", "45px")
+.attr("value",function(d) {return d;});
+}
+
+setTimeout(function() {
+listTopics();
+}, 2000);
+    
+</script>
+
+<div class="top" height="100">
+<h1 color="white">Truthfulness concerning Rumors in News Reporting<br></h1>
+<h2 color="white">A visualization of Snopes.org Rumor Tracking <br></h2>
+</div>
+    
+<svg id="container" width="3000" height="1200"  fill="white" transform="translate(700,0)">
+    <text x="140" y="140">True</text>
+    <text x="140" y="300">Mostly True</text>
+    <text x="140" y="460">Mixture</text>
+    <text x="140" y="620">Mostly False</text>
+    <text x="140" y="780">False</text>
+    <text x="140" y="940">Unverified</text>
+    <text x="1700" y="1150" font-weight="bold">Date</text>
+    <text x="1500" y="520" color="yellow" font-weight="bold">Truth Spectrum</text>
+    <text class="spectrum" x="0" y="620" fill="red" transform="translate(80deg)">Spectrum of Truth</text>
+
+    <text color="yellow">Truth Spectrum2</text>
+    <button onclick="dimAll()">Dim All</button>
+    <button onclick="showAll()">Show All</button>
+</svg>
+
+
+
+<p class="droppy"> <strong>Filter by topic:</strong> <select class="drop-down" id="topic" onChange="filter(this.value)"></select><br/></p><br>
+<button onclick="showAll()">Show All</button>
+<div class="results" height="100">
+    <p id="claim"></p>
+    <p id="count"></p>
+    <p id="claim_label"> </p>
+    <p id="focus" background-color="pink"> </p>
+    <p id="pub"></p>
+</div>
+</body>
+</html>
